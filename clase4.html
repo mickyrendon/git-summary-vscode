@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- fuente de texto -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet"> 
+      <!-- css style -->
+      <link rel="stylesheet" href="../styles/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav-header">
+        <div class="nav-h-container">
+            <p>
+                git desarrollo colaborativo, resumen clase 3, alumni
+            </p>
+        </div>
+    </nav>
+    <header>
+        <h1>
+            git en vscode
+        </h1>
+        <br>
+        <p>
+           usando git en vscode     
+        </p>
+    </header>
+    <main>
+        <div class="container">
+
+            <h3>
+                comandos en vscode desde la terminal
+            </h3>
+            <ul>
+                <li>git revert
+                    <ul>
+                        <li>
+                            si queremos revertir algun commit en la linea cronologica primero nos fijamos en el codigo del commit, lo copiamos en git revert y listo, me devuelvo hasta ese commit.
+                            esto crea un nuevo commit.
+                            depende del proyecto en el que estemos o la empresa, vamos a usar este o no.
+                            al usar esto deja el historial 'sucio', pero de cierta manera es bueno porque permite ver el historial de los cambios que hicimos en cambio al usar reset deja un historial mas limpio porque permite borrar commits.
+
+                        </li>
+                    </ul>
+                </li>
+                <li>git reset
+                    <ul>
+                        <li>
+                            elimina los commit de la linea del historial, siempre y cuando sean locales.
+                            existen tres tipos de reset.
+                            git reset 'tipo de reset'
+
+                            <ol>
+                                <li>
+                                    --soft
+                                    conserva los cambios y los manda al stage area.
+
+                                </li>
+                                <li>
+                                    --mixed
+                                    conserva los cambios, y te los deja en el working directory y no los manda al stage area.
+                                </li>
+                                <li>
+                                    --hard
+                                    si vuelvo a un commit  antiguo me lleva alli pero los commits que hice desde donde estaba hasta donde fui pierdo los cambios.
+                                </li>
+                            </ol>
+                        </li>
+                    </ul>
+                    <p>
+                        para hacer un push tengo que estar parado en el ultimo commit del proyecto en el cliente de git... 
+                        es para asegurarse de que todos los colaboradores estamos actualizados con los cambios...
+                        
+                    </p>
+                </li>
+                <br>
+
+                <li>git blame
+                    <ul>
+                        <li>
+                            es para ver los cambios que hizo alguien en el proyecto, asi se puede ver quien se mando una macana.
+                            git blame codigo del commit.
+                            git blame nombre del commit.
+                            te tira el codigo, el usuario de github la fecha y hora en que se hizo.
+                        </li>
+                    </ul>
+                </li>
+                <li>git blame -w
+                    <ul>
+                        <li>
+                            muestra los archivos que no se commitearon y que estan los espacios en blanco.
+                        </li>
+                    </ul>
+                </li>
+                <li>git grep
+                    <ul>
+                        <li>
+                            es para hacer una busqueda, busca una palabra en donde o especifique. si no le pongo una palabra clave entonces busca... es como el ctrl+F en vs code.
+                            es util para buscar algo en un repositorio.
+
+                            
+
+                            
+                        </li>
+                        <li>
+                            git grep -n 'palabraclave'
+                        </li>
+                        <li>
+                            git grep -c 'palabraclave'
+                        </li>
+                        <li>
+                            git grep 
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p>
+                rebase interactivo
+            </p>
+            <ul>
+                <li>
+                    git rebase -i main.
+                    <ul>
+                        <li>
+                            git rebase pick
+                        </li>
+                        <li>
+                            git rebase reward
+                        </li>
+                        <li>
+                            git reflog
+                            muestra todo el historial que hiciste en un limite de tiempo puntual.
+                            durante 90 dias por defecto.
+                            y 30 dias para los cambios eliminados
+                        </li>
+                        <li></li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3>
+                flujo de trabajo
+            </h3>
+            <br>
+            <p>
+                cualquier empresa tiene su flujo de trabajo.
+                los siguientes son unos ejemplos
+            </p>
+            <ul>
+                <li>
+                    long-running branch
+                    <ul>
+                        <li>
+                            consta de 3 ramas
+                            main, testing y la del desarrollador.
+                            es un flujo clasico y simple, pero no es escalable.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    topic branch
+                    <ul>
+                        <li>
+                            son ramas cortita, para un tema en particular por mas peque;o que sea, o hasta para las ideas para solucionar cualquier problema.
+                            y al final se mergea al main y luego se borra.
+                            y al final la rama que se escoja se mergea.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    admin de integracion(similar al de meli)
+                    <ul>
+                        <li>
+                            un repo que lo tiene un admin y el equipo hace fork del repo para trabajar localmente, luego se hace un pull request y el admin es el que aprueba o rechaza el PR para mergear...
+                        </li>
+                    </ul>
+                </li>
+                <li>dictador y tenientes
+                    <ul>
+                        <li>
+                            estructura de trabajo jerargica que se usa en un equipo de mas de mil personas...
+                        </li>
+                    </ul>
+                </li>
+                <li>gitflow(se usa en meli, y el mas usado)
+                    <ul>
+                        <li>
+                            se crean dos ramas, la main y la develop(o cualquier nombre que se crea), y todos los cambios que se hacen se hacen en la rama develop... se trabaja con release... cambios que se hacen cada cierto tiempo...
+                            la master se usa solo para hacer los releases...
+                            y los features que se hagan en su respectivo sprint se mergean en la rama develop...  y antes de pasar a produccion se hace una rama de mantenimiento en donde se hace el testing ... 
+                            el hotfix es una rama de emergencia para hacer un cambio de emergencia...
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+
+            <h3>
+                comandos avanzados
+            </h3>
+            <p>
+                comandos que se usan para ser mas dinamico...
+            </p>
+            <ul>
+                <li>alias
+                    <ul>
+                        <li>
+                            se crea para 
+                        </li>
+                    </ul>
+                </li>
+                <li>.git ignore
+                    en window no deja crear un archivo con un punto al inicio, entonces hay que hacer .gitIgnore.
+                    <ul>
+                        <li>
+                            es un archivo dentro del repositorio donde le seteo los tipos de archivos que no quiero que me suba al stage. los ignora....
+                            se puede usar para ignorar los archivos de prueba o los que se quiera...
+                        </li>
+                    </ul>
+                </li>
+                <br>
+                <br>
+                <li>resumiendo el video de la clase 4
+                    <ul>
+                        <li>
+                            para este tema vamos a crear un repo y subirlo al cliente de github y hacerle unos cuantos commits
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <li>
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <nav class="nav">
+            <h2>Clases</h2>
+            <ul>
+                <li>
+                    <a href="">
+                        clase 1 cursada
+                    </a> 
+                </li>
+                <li>
+                    <a href="">
+                        clase 1 alumni
+                    </a> 
+                </li>
+                <li>
+                    <a href="">
+                        clase 2 cursada
+                    </a> 
+                </li>
+                <li>
+                    <a href="">
+                        clase 2 alumni
+                    </a> 
+                </li>
+                <li>
+                    <a href="">
+                        Clase 3 cursada 
+                    </a> 
+                </li>
+                <li>
+                    <a href="">
+                        Clase 3 alumni
+                    </a> 
+                </li>
+                <li>
+                    <a href="">
+                        Clase 4 cursada
+                    </a> 
+                </li>
+                <li>
+                    <a href="">
+                        Clase 4 alumni
+                    </a> 
+                </li>
+            </ul>
+        </nav>
+    </main>
+</body>
+</html>
